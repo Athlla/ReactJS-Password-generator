@@ -1,7 +1,7 @@
 const Intro = () => {
   return (
     <div>
-      <h1 className="text-8xl flex-1 text-center font-semibold">
+      <h1 className="text-6xl flex-1 text-center font-semibold">
         Random Password Generator
       </h1>
       <p className="flex-1 mt-5 text-center text-xl">
