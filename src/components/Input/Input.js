@@ -6,6 +6,7 @@ const Input = (props) => {
         <>
           <input
             type="text"
+            value={props.value}
             className={`bg-${props.color}-200 text-${props.color}-600 w-4/5 border-2 border-bold border-${props.color}-600 px-5 py-3 pr-12 rounded-md`}
           />
           <button className="relative right-10">
@@ -36,8 +37,10 @@ const Input = (props) => {
             type="checkbox"
             id={props.id}
             className="ml-3 mr-5 my-3 h-5 w-5"
+            checked={props.checked}
+            onChange={props.onchange}
           />
-          <label for={props.id}>{props.label}</label>
+          <label htmlFor={props.id}>{props.label}</label>
         </div>
       );
       break;
