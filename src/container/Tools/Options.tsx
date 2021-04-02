@@ -1,8 +1,23 @@
+import { FormEvent } from 'react';
 import Input from '../../components/Input/Input';
 
-const Options = (props) => {
-  const optionsHandler = (index) => {
-    props.setOptions((prevOptions) => {
+interface optionsProps {
+  options: optionsInterface;
+  setOptions: Function;
+  length: number;
+  setLength: Function;
+}
+
+interface optionsInterface {
+  uppercase: boolean;
+  lowercase: boolean;
+  number: boolean;
+  symbol: boolean;
+}
+
+const Options = ({ options, setOptions, length, setLength }: optionsProps) => {
+  const optionsHandler = (index: number) => {
+    setOptions((prevOptions: optionsInterface) => {
       switch (index) {
         case 0:
           return { ...prevOptions, uppercase: !prevOptions.uppercase };
@@ -18,6 +33,11 @@ const Options = (props) => {
     });
   };
 
+  const setLengthHandler = (e: FormEvent) => {
+    let element = e.target as HTMLInputElement;
+    setLength(+element.value);
+  };
+
   return (
     <div className="flex flex-row mt-10">
       <section className="flex-1 p-2">
@@ -26,29 +46,29 @@ const Options = (props) => {
           <Input
             type="checkbox"
             id="uppercase"
-            label="A-Z (uppercase)"
-            checked={props.options.uppercase}
+            text="A-Z (uppercase)"
+            checked={options.uppercase}
             onchange={() => optionsHandler(0)}
           />
           <Input
             type="checkbox"
             id="numbers"
-            label="0-9"
-            checked={props.options.number}
+            text="0-9"
+            checked={options.number}
             onchange={() => optionsHandler(1)}
           />
           <Input
             type="checkbox"
             id="lowercase"
-            label="a-z (lowercase)"
-            checked={props.options.lowercase}
+            text="a-z (lowercase)"
+            checked={options.lowercase}
             onchange={() => optionsHandler(2)}
           />
           <Input
             type="checkbox"
             id="symbols"
-            label="!@#$%^..."
-            checked={props.options.symbol}
+            text="!@#$%^..."
+            checked={options.symbol}
             onchange={() => optionsHandler(3)}
           />
         </div>
@@ -62,11 +82,11 @@ const Options = (props) => {
             name="volume"
             min="6"
             max="50"
-            value={props.length}
-            onChange={props.setLength}
+            value={length}
+            onChange={setLengthHandler}
             className="w-11/12 h-0.5 bg-gray-400 appearance-none focus:outline-none"
           />
-          <p className="-mt-3 ml-3">{props.length}</p>
+          <p className="-mt-3 ml-3">{length}</p>
         </div>
       </section>
     </div>

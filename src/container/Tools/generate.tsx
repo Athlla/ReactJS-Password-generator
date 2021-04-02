@@ -3,7 +3,14 @@ const lowerChar = 'abcdefghijklmnopqrstuvwxyz';
 const numberChar = '0123456789';
 const symbolChar = "!'^+%&/()=?_#$½§{[]}|;:>÷`<.*-@é";
 
-export const generatePass = (options, passLength) => {
+interface optionsTypes {
+  uppercase: boolean;
+  lowercase: boolean;
+  number: boolean;
+  symbol: boolean;
+}
+
+export const generatePass = (options: optionsTypes, passLength: number) => {
   let charList = '';
   if (
     !options.uppercase &&
